@@ -14,7 +14,7 @@ If you are using maven, then you can add this to your project .pom file to inclu
     <artifactId>votesmart-client</artifactId>
     <version>1.0.0</version>
 
-Otherwise, you can get everything from the releases tab above or go to <a href="http://search.maven.org/#browse">The Central Repository</a> website and download from there.
+Otherwise, you can get everything from the <a href="https://github.com/karlnicholas/votesmart/releases">releases</a> tab above or go to <a href="http://search.maven.org/#browse">The Central Repository</a> website and download from there.
 
 Examples
 ========
