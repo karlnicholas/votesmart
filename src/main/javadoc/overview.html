@@ -1,0 +1,36 @@
+<html>
+<body>
+
+<p>This program is a RESTful Client API for the <a href="http://votesmart.org">VoteSmart.org Website.</a></p>
+
+<p>The <a href="http://api.votesmart.org/docs/">VoteSmart Documentation</a> site has 
+additional information and terms of use.</p>
+
+<p>The typical user will typically use the classes in the org.votesmart.classes package.</p>
+
+<p>Java version 1.6 at a minimum is required. No additional jars are required.</p>
+
+<p>It requires a ResourceBundle named VoteSmart. This means a file
+named votesmart.properties must be found in your class path, such
+as your resources directory. This VoteSmart client reads three 
+keys from the resource bundle, two of which are mandatory.
+These are in the form of key=value, one on each line.
+The three keys are:<br/><br/>
+
+apikey		(Mandatory) get and APIKEY from VoteSmart.org<br/>
+cache		(Mandatory) such as c:/tmp/VoteSmartCache<br/>
+loglevel	(Optional) NONE, SEVERE, WARNING, INFO, FINE, FINER, FINEST, ALL<br/>
+</p>
+
+<pre>For Example:
+apikey=123easyasabcbabyyouandme
+cache=c:/tmp/votesmart
+</pre>
+<p>
+ The queries will be cached and all subsequent calls will return 
+ the same information. If you want to disable the cache checking, 
+ then call VoteSmart.checkCache(false); or VoteSmart.checkCache(true);
+ to turn it back on.
+</p>
+</body>
+</html>

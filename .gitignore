@@ -1,6 +1,14 @@
 *.class
-
-# Package Files #
+# Package Files 
+#
 *.jar
 *.war
 *.ear
+/bin
+.classpath
+.project
+.settings
+/target
+/pom.xml.releaseBackup
+
+/release.properties

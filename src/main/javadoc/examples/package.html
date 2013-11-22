@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+This program is a very simple demonstration of this RESTful Client API.
+It requires a ResourceBundle named VoteSmart. This means a file
+named VoteSmart.properties must be found in your class path, such
+as your resources directory. This VoteSmart client reads three 
+keys from the resource bundle, two of which are mandatory.
+These are in the form of key=value, one on each line.
+The three keys are:
+
+apikey    (Mandatory) get from VoteSmart.org
+cache     (Mandatory) such as c:/tmp/VoteSmartCache
+loglevel	 (Optional) NONE, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST, ALL
+
+The basic goal here are to make (most) every possible call 
+and use ID's from earlier calls to pass to later calls.
+
+Secondarily, the goal is to list make all the calls that can be 
+made for a state.
+
+The example.java program is this:
+
+// Query the server
+CandidateList candidates = new OfficialsClass().getByOfficeState("6", "MT");
+
+// And print out the candidates
+for ( CandidateList.Candidate candidate: candidates.candidate ) {
+	System.out.println(
+		candidate.candidateId 
+		+ " = " 
+		+ candidate.title
+		+ " "
+		+ candidate.firstName
+		+ " "
+		+ candidate.lastName 
+	);
+}
+</pre>
+</body></html>
