@@ -10,13 +10,19 @@ Version 1.0.0 has been put in <a href="http://search.maven.org/#browse">The Cent
 
 If you are using maven, then you can add this to your project .pom file to include this client:
 
-    <groupId>org.votesmart</groupId>
-    <artifactId>votesmart-client</artifactId>
-    <version>1.0.0</version>
+    <dependency>
+        <groupId>org.votesmart</groupId>
+        <artifactId>votesmart-client</artifactId>
+        <version>1.0.0</version>
+    </dependency>
 
-Otherwise, you can get everything from the <a href="https://github.com/karlnicholas/votesmart/releases">releases</a> tab above or go to <a href="http://search.maven.org/#browse">The Central Repository</a> website and download from there.
+Otherwise, you can get everything from the <a href="https://github.com/karlnicholas/votesmart/releases">releases</a> tab above or go to 
+<a href="http://search.maven.org/#browse">The Central Repository</a> website and download from there.
 
 Examples
 ========
-    examples/example.java
+
+Examples can be found in the <a href="https://github.com/karlnicholas/votesmart/tree/master/src/main/java/examples">examples</a> directory:
+
+    examples/Example.java
     examples/AllThingsCalifornia.java
