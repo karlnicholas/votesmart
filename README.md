@@ -22,5 +22,5 @@ Examples
 ========
 Examples are in the <a href="https://github.com/karlnicholas/votesmart/tree/master/src/main/java/examples">examples</a> directory.
 
-    examples/example.java
+    examples/Example.java
     examples/AllThingsCalifornia.java

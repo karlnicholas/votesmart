@@ -133,7 +133,7 @@ public class OfficeClass extends ClassesBase {
 	 * This method dumps offices we keep track of according to type and level.
 	 * 
 	 * @param officeTypeId
-	 * @param levelId
+	 * @param officeLevelId
 	 * @return {@link Offices}: 
 	 */
 	public Offices getOfficesByTypeLevel(String officeTypeId, String officeLevelId) throws VoteSmartException, VoteSmartErrorException {
