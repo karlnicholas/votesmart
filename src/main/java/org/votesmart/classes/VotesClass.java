@@ -125,7 +125,7 @@ public class VotesClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public VotesClass() {
+	public VotesClass() throws VoteSmartException {
 		super();
 	}
 

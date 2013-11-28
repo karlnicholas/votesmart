@@ -78,7 +78,7 @@ public class OfficeClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public OfficeClass() {
+	public OfficeClass() throws VoteSmartException {
 		super();
 	}
 	

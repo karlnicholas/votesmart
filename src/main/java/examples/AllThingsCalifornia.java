@@ -1,5 +1,6 @@
 package examples;
 
+import org.votesmart.api.VoteSmart;
 import org.votesmart.api.VoteSmartErrorException;
 import org.votesmart.classes.*;
 import org.votesmart.data.*;
@@ -16,7 +17,6 @@ import org.votesmart.data.*;
  * 
  * apikey    (Mandatory) get from VoteSmart.org
  * cache     (Mandatory) such as c:/tmp/VoteSmartCache
- * loglevel	 (Optional) NONE, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST, ALL
  * 
  * The basic goal here are to make (most) every possible call 
  * and use ID's from earlier calls to pass to later calls.
@@ -367,7 +367,8 @@ public class AllThingsCalifornia {
 		System.out.println("There are " + bills.bill.size() + " bills for sponsor " + sponsor.name + " in 2013\n");
 
 		// disable cache for this one ... 
-//		VoteSmart.checkCacheFirst(false);
+		VoteSmart.setCache(false);
+		
 		// 10 bills from CA
 		bills = votesClass.getBillsByStateRecent("10", state.stateId);
 		System.out.println("10 recent bills from " + state.name + " are:");
@@ -375,8 +376,9 @@ public class AllThingsCalifornia {
 			System.out.print( abill.billNumber + ", ");
 		}
 		System.out.println("\n");
+		
 		// and turn it back on after this ... 
-//		VoteSmart.checkCacheFirst(true);
+		VoteSmart.setCache(true);
 		
 		// ByBillNumber
 		String billNumber = bills.bill.get(0).billNumber;

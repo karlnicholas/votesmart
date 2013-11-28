@@ -12,14 +12,13 @@ additional information and terms of use.</p>
 
 <p>It requires a ResourceBundle named VoteSmart. This means a file
 named votesmart.properties must be found in your class path, such
-as your resources directory. This VoteSmart client reads three 
-keys from the resource bundle, two of which are mandatory.
+as your resources directory. This VoteSmart client reads two 
+keys from the resource bundle, one of which is mandatory.
 These are in the form of key=value, one on each line.
-The three keys are:<br/><br/>
+The keys are:<br/><br/>
 
 apikey		(Mandatory) get and APIKEY from VoteSmart.org<br/>
-cache		(Mandatory) such as c:/tmp/VoteSmartCache<br/>
-loglevel	(Optional) NONE, SEVERE, WARNING, INFO, FINE, FINER, FINEST, ALL<br/>
+cache		(Optional) such as c:/tmp/VoteSmartCache<br/>
 </p>
 
 <pre>For Example:
@@ -27,9 +26,10 @@ apikey=123easyasabcbabyyouandme
 cache=c:/tmp/votesmart
 </pre>
 <p>
- The queries will be cached and all subsequent calls will return 
- the same information. If you want to disable the cache checking, 
- then call VoteSmart.checkCache(false); or VoteSmart.checkCache(true);
+ If caching is enabled, the queries will be cached and all subsequent 
+ calls will return the same information. If you want to disable the cache checking, 
+ then either omit the cache key from the properties file, or 
+ call VoteSmart.setCache(false) to turn it off and VoteSmart.setCache(true);
  to turn it back on.
 </p>
 </body>

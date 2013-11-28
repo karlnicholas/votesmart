@@ -45,7 +45,7 @@ public class MeasureClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public MeasureClass() {
+	public MeasureClass() throws VoteSmartException {
 		super();
 	}
 	

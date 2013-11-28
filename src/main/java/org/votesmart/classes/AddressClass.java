@@ -69,7 +69,7 @@ public class AddressClass extends ClassesBase {
 	/**
 	 * Default constructor
 	 */
-	public AddressClass() {
+	public AddressClass() throws VoteSmartException {
 		super();
 	}
 

@@ -70,7 +70,7 @@ public class CandidatesClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public CandidatesClass() {
+	public CandidatesClass() throws VoteSmartException {
 		super();
 	}
 

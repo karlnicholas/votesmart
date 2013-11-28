@@ -79,7 +79,7 @@ public class RatingClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public RatingClass() {
+	public RatingClass() throws VoteSmartException {
 		super();
 	}
 

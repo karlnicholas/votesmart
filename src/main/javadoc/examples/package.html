@@ -4,14 +4,13 @@
 This program is a very simple demonstration of this RESTful Client API.
 It requires a ResourceBundle named VoteSmart. This means a file
 named VoteSmart.properties must be found in your class path, such
-as your resources directory. This VoteSmart client reads three 
-keys from the resource bundle, two of which are mandatory.
+as your resources directory. This VoteSmart client reads two 
+keys from the resource bundle, one of which is mandatory.
 These are in the form of key=value, one on each line.
-The three keys are:
+The keys are:
 
 apikey    (Mandatory) get from VoteSmart.org
-cache     (Mandatory) such as c:/tmp/VoteSmartCache
-loglevel	 (Optional) NONE, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST, ALL
+cache     (Optional) such as c:/tmp/VoteSmartCache
 
 The basic goal here are to make (most) every possible call 
 and use ID's from earlier calls to pass to later calls.

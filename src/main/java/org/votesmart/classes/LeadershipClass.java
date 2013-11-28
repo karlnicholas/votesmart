@@ -51,7 +51,7 @@ public class LeadershipClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public LeadershipClass() {
+	public LeadershipClass() throws VoteSmartException {
 		super();
 	}
 

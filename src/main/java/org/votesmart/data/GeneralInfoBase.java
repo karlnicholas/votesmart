@@ -11,7 +11,7 @@ package org.votesmart.data;
  * </pre>
  *
  */
-public class GeneralInfoBase {
+public class GeneralInfoBase extends ErrorBase {
 	
 	public GeneralInfo generalInfo;
 	

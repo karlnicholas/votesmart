@@ -16,6 +16,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  * </pre>
  */
 @XmlRootElement(name="elections")
-public class ElectionByZip {
+public class ElectionByZip extends GeneralInfoBase {
 	public ArrayList<Election> election;
 }

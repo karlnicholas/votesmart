@@ -61,7 +61,7 @@ public class ElectionClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public ElectionClass() {
+	public ElectionClass() throws VoteSmartException {
 		super();
 	}
 

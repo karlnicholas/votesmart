@@ -41,7 +41,7 @@ public class DistrictClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public DistrictClass() {
+	public DistrictClass() throws VoteSmartException {
 		super();
 	}
 

@@ -44,7 +44,7 @@ public class CandidateBioClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public CandidateBioClass() {
+	public CandidateBioClass() throws VoteSmartException {
 		super();
 	}
 

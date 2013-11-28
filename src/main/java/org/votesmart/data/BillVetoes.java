@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @XmlRootElement(name="bills")
-public class BillVetoes {
+public class BillVetoes extends GeneralInfoBase {
 	public ArrayList<Bill> bill;
 	
 	@XmlType(name="bill", namespace="bills")

@@ -77,7 +77,7 @@ public class OfficialsClass extends ClassesBase {
 	/**
 	 * Default constructor
 	 */
-	public OfficialsClass() {
+	public OfficialsClass() throws VoteSmartException {
 		super();
 	}
 

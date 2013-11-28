@@ -1,13 +1,30 @@
 <html>
 <body>
-<pre>
 These classes implement the calls to the API. 
 
 The user will typically use the classes package.
 
-The queries will be cached and all subsequent calls will return 
-the same information. If you want to disable the cache checking, 
-then call VoteSmart.checkCache(false); or VoteSmart.checkCache(true);
-to turn it back on.
+<p>It requires a ResourceBundle named VoteSmart. This means a file
+named votesmart.properties must be found in your class path, such
+as your resources directory. This VoteSmart client reads two 
+keys from the resource bundle, one of which is mandatory.
+These are in the form of key=value, one on each line.
+The keys are:<br/><br/>
+
+apikey		(Mandatory) get and APIKEY from VoteSmart.org<br/>
+cache		(Optional) such as c:/tmp/VoteSmartCache<br/>
+</p>
+
+<pre>For Example:
+apikey=123easyasabcbabyyouandme
+cache=c:/tmp/votesmart
 </pre>
-</body></html>
+
+<p>
+ The queries will be cached and all subsequent calls will return 
+ the same information. If you want to disable the cache checking, 
+ then call VoteSmart.setCache(false); or VoteSmart.setCache(true);
+ to turn it back on.
+</p>
+</body>
+</html>

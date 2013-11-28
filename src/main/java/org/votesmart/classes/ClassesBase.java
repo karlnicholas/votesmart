@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 
 import org.votesmart.api.VoteSmart;
 import org.votesmart.api.VoteSmartAPI;
+import org.votesmart.api.VoteSmartException;
 
 /**
  * <pre>
@@ -19,7 +20,7 @@ public class ClassesBase {
 	 * This class is supports the other interface classes. 
 	 * Default constructor
 	 */
-	public ClassesBase() {
+	public ClassesBase() throws VoteSmartException {
 		if ( ClassesBase.api == null ) ClassesBase.api = new VoteSmart(ResourceBundle.getBundle("votesmart"));
 	}
 	

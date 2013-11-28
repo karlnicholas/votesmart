@@ -57,7 +57,7 @@ public class CommitteeClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public CommitteeClass() {
+	public CommitteeClass() throws VoteSmartException {
 		super();
 	}
 

@@ -49,7 +49,7 @@ public class StateClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public StateClass() {
+	public StateClass() throws VoteSmartException {
 		super();
 	}
 	

@@ -14,8 +14,7 @@ import org.votesmart.data.CandidateList;
  * The three keys are:
  * 
  * apikey    (Mandatory) get from VoteSmart.org
- * cache     (Mandatory) such as c:/tmp/VoteSmartCache
- * loglevel	 (Optional) NONE, SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST, ALL
+ * cache     (Optional) such as c:/tmp/VoteSmartCache
  * 
  * The queries will be cached and all subsequent calls will return 
  * the same information. If you want to disable the cache checking, 

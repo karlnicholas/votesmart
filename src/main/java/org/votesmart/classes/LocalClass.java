@@ -55,7 +55,7 @@ public class LocalClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public LocalClass() {
+	public LocalClass() throws VoteSmartException {
 		super();
 	}
 	

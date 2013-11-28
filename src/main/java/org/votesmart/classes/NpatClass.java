@@ -40,7 +40,7 @@ public class NpatClass extends ClassesBase {
 	/**
 	 * Default Constructor
 	 */
-	public NpatClass() {
+	public NpatClass() throws VoteSmartException {
 		super();
 	}
 	/**
