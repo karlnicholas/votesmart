@@ -18,7 +18,7 @@
 		<connection>scm:git:git@github.com:karlnicholas/votesmart.git</connection>
 		<developerConnection>scm:git:git@github.com:karlnicholas/votesmart.git</developerConnection>
 		<url>git@github.com:karlnicholas/votesmart.git</url>
-		<tag>votesmart-client-1.0.0</tag>
+		<tag>votesmart-client-1.0.1</tag>
 	</scm>
 	<developers>
 		<developer>
