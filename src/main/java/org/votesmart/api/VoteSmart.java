@@ -11,7 +11,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -230,7 +229,7 @@ public class VoteSmart implements VoteSmartAPI {
 				terms.append( '&' );
 				terms.append( key );
 				terms.append('=' );
-				terms.append( URLEncoder.encode(value, "utf-8" ) );
+				terms.append( value );		// URL encoding is done by the URI constructor
 			}
 		}
 			
@@ -275,102 +274,3 @@ public class VoteSmart implements VoteSmartAPI {
 	    return charset;
 	}
 }
-
-/*
-public <T> T query(String method, ArgMap argMap, Class<T> responseType) throws VoteSmartException, VoteSmartErrorException {
-try {
-//	System.out.println(uri.toString());
-	Reader reader;
-	StringBuilder filename = new StringBuilder(cache + method );
-	StringBuilder XMLBuilder = new StringBuilder();
-	String XMLStr = null;
-    HttpURLConnection con = null;
-	BufferedReader breader;
-	if ( argMap!= null ) {
-		for (String key: argMap.keySet() )
-		{
-			String value = argMap.get(key);
-			filename.append('.');
-			filename.append( key );
-			filename.append('.');
-			filename.append( value );
-		}
-	}
-	// save this for later
-	//filename.append(".xml" );
-
-	File file = new File(filename.toString() + ".xml");
-
-	long fileLength = file.length(); 
-	logger.fine("Length of File in cache:" + fileLength + ": " + filename.toString());
-	if ( fileLength == 0L || VoteSmart.checkCache == false ) {
-		StringBuilder terms = new StringBuilder();
-		// Iterate through the keys and their values, both are important
-		if ( argMap != null ) {
-			for (String key: argMap.keySet() )
-			{
-				String value = argMap.get(key);
-				terms.append( '&' );
-				terms.append( key );
-				terms.append('=' );
-				terms.append( URLEncoder.encode(value, "UTF-8" ) );
-			}
-		}
-		
-		// construct the url ..
-		URI uri = new URI(
-			"http", 
-			null,
-			apiServer, 
-			-1,
-			"/" + method, 
-			"key=" + apiKey + "&output=XML" + terms.toString(), 
-			null
-		);
-		logger.fine(uri.toString());
-		
-		URLConnection urlCon = uri.toURL().openConnection();
-	    con = (HttpURLConnection)urlCon;
-	    con.addRequestProperty("Accept", "text/xml, application/xml");
-	    con.connect();
-		breader = new BufferedReader(new InputStreamReader( con.getInputStream(), Charset.forName("UTF-8") ) );
-	} else {
-		breader = new BufferedReader(new InputStreamReader( new FileInputStream(file), Charset.forName("UTF-8") ) );
-	}
-	
-	int read;
-	while ( (read = breader.read(buffer)) != -1 ) {
-		XMLBuilder.append(buffer, 0, read);
-	}
-	breader.close();
-	XMLStr = XMLBuilder.toString();
-	reader = new StringReader(XMLStr);
-	
-	if ( fileLength == 0 ) {
-		con.disconnect();
-		BufferedWriter bwriter = new BufferedWriter( new OutputStreamWriter( new FileOutputStream(file), Charset.forName("UTF-8")) );
-		bwriter.write(XMLStr);
-		bwriter.close();
-	}
-
-    JAXBElement<T> e = unmarshaller.unmarshal( new StreamSource( reader ), responseType );
-    if ( e.getName().getLocalPart().equals("error") ) {
-        ErrorBase error = unmarshaller.unmarshal( new StreamSource( reader = new StringReader(XMLStr) ), ErrorBase.class ).getValue();  
-		throw new VoteSmartErrorException(error, method, argMap);
-    } else {
-    	return e.getValue();
-    }
-} catch (URISyntaxException e) {
-	throw new VoteSmartException(e);
-} catch (UnsupportedEncodingException e) {
-	throw new VoteSmartException(e);
-} catch (MalformedURLException e) {
-	throw new VoteSmartException(e);
-} catch (IOException e) {
-	throw new VoteSmartException(e);
-} catch (JAXBException e) {
-	throw new VoteSmartException(e);
-}
-}
-}
-*/
