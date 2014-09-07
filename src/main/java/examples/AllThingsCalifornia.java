@@ -82,12 +82,13 @@ public class AllThingsCalifornia {
 		office = offices.office.get(0);
 		System.out.println("The officeId for Type/Level is " + office.officeId + ", and is called " + office.name +"\n" );
 
+
 		// Office getOfficesByBranchLevel
 		offices = officeClass.getOfficesByBranchLevel(officeBranch.officeBranchId, officeLevel.officeLevelId);
 		System.out.println("There are " + offices.office.size() + " offices for the Branch/Level " + officeBranch.name + "/" + officeLevel.name );
-		office = offices.office.get(1);
+		office = offices.office.get(0);
 		System.out.println("The second officeId for Type is " + office.officeId + ", and is called " + office.name +"\n" );
-		
+
 		// Determine California State Id
 		StateClass stateClass = new StateClass();
 		StateList allStates = stateClass.getStateIDs();
@@ -334,7 +335,7 @@ public class AllThingsCalifornia {
 		Bill.Sponsors.Sponsor sponsor = bill.sponsors.sponsor.get(0);
 		System.out.println("The first sponsorId is " + sponsor.candidateId + ", called " + sponsor.name );
 		System.out.println("Bill " + bill.billNumber + " has " + bill.actions.action.size() + " actions" );
-		Bill.Actions.Action actionOfBill = bill.actions.action.get(0);
+		Bill.Actions.Action actionOfBill = bill.actions.action.get(1);
 		System.out.println("The first actionId is " + actionOfBill.actionId + ", dated " + actionOfBill.statusDate + "\n" );
 		
 		// by Action
@@ -384,7 +385,7 @@ public class AllThingsCalifornia {
 		String billNumber = bills.bill.get(0).billNumber;
 		// should get one of the most recent bills, but we just want to keep using the cache for 
 		// the purpose of this example program.
-		bills = votesClass.getByBillNumber("S Amdt 2013");
+		bills = votesClass.getByBillNumber(billNumber);
 		System.out.println("There are " + bills.bill.size() + " bills with billNumber \"" + billNumber + "\"\n");
 
 		// BillsByOfficial

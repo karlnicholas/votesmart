@@ -5,56 +5,47 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.votesmart.data.BioOld.Office.Committee;
+
 /**
  * <pre>
+ * This method expands on getBio() by expanding the 
+ * education, profession, political, orgMembership, 
+ * and congMembership elements.
+ * 
  * Output: 
- * bio.candidate.crpId (OpenSecrets ID), 
- *  bio.candidate.firstName, 
- *  bio.candidate.nickName, 
- *  bio.candidate.middleName, 
- *  bio.candidate.lastName, 
- *  bio.candidate.suffix, 
- *  bio.candidate.birthDate, 
- *  bio.candidate.birthPlace, 
- *  bio.candidate.pronunciation, 
- *  bio.candidate.gender, 
- *  bio.candidate.family, 
- *  bio.candidate.photo, 
- *  bio.candidate.homeCity, 
- *  bio.candidate.homeState, 
- *  bio.candidate.education, 
- *  bio.candidate.profession, 
- *  bio.candidate.political, 
- *  bio.candidate.religion, 
- *  bio.candidate.congMembership, 
- *  bio.candidate.orgMembership, 
- *  bio.candidate.specialMsg, 
- *  bio.office.parties, 
- *  bio.office.title, 
- *  bio.office.shortTitle, 
- *  bio.office.name, 
- *  bio.office.type, 
- *  bio.office.status, 
- *  bio.office.firstElect, 
- *  bio.office.lastElect, 
- *  bio.office.nextElect, 
- *  bio.office.termStart, 
- *  bio.office.termEnd, 
- *  bio.office.district, 
- *  bio.office.districtId, 
- *  bio.office.stateId, 
- *  bio.office.committee*.committeeId, 
- *  bio.office.committee*.committeeName, 
- *  bio.election*.office, 
- *  bio.election*.officeId, 
- *  bio.election*.officeType, 
- *  bio.election*.parties, 
- *  bio.election*.district, 
- *  bio.election*.districtId, 
- *  bio.election*.status, 
- *  bio.election*.ballotName.
+ * Includes all elements for getBio(), and expands upon the following: 
+ * 
+ *  bio.candidate.education*.degree
+ *  bio.candidate.education*.field
+ *  bio.candidate.education*.school
+ *  bio.candidate.education*.span
+ *  bio.candidate.education*.gpa
+ *  bio.candidate.profession*.title
+ *  bio.candidate.profession*.organization
+ *  bio.candidate.profession*.span
+ *  bio.candidate.profession*.special
+ *  bio.candidate.profession*.district
+ *  bio.candidate.profession*.fullText
+ *  bio.candidate.political*.title
+ *  bio.candidate.political*.organization
+ *  bio.candidate.political*.span
+ *  bio.candidate.political*.special
+ *  bio.candidate.political*.district
+ *  bio.candidate.political*.fullText
+ *  bio.candidate.congMembership*.title
+ *  bio.candidate.congMembership*.organization
+ *  bio.candidate.congMembership*.span
+ *  bio.candidate.congMembership*.special
+ *  bio.candidate.congMembership*.district
+ *  bio.candidate.congMembership*.fullText
+ *  bio.candidate.orgMembership*.title
+ *  bio.candidate.orgMembership*.organization
+ *  bio.candidate.orgMembership*.span
+ *  bio.candidate.orgMembership*.special
+ *  bio.candidate.orgMembership*.district
+ *  bio.candidate.orgMembership*.fullText
  *  </pre>
- *
  */
 @XmlRootElement(name="bio")
 public class Bio extends GeneralInfoBase {
@@ -78,12 +69,12 @@ public class Bio extends GeneralInfoBase {
  		 public String photo;
  		 public String homeCity;
  		 public String homeState;
- 		 public String education;
- 		 public String profession;
- 		 public String political;
+ 		 public Education education;
+ 		 public Profession profession;
+ 		 public Political political;
  		 public String religion;
- 		 public String congMembership;
- 		 public String orgMembership;
+ 		 public CongMembership congMembership;
+ 		 public OrgMembership orgMembership;
  		 public String specialMsg;
  	}
 
@@ -112,17 +103,48 @@ public class Bio extends GeneralInfoBase {
  		 }
  	}
  	
-	@XmlType(name="election", namespace="bio")
- 	public static class Election {
- 		 public String office;
- 		 public String officeId;
- 		 public String officeType;
- 		 public String parties;
- 		 public String district;
- 		 public String districtId;
- 		 public String status;
- 		 public String ballotName;
- 	}
+	@XmlType(name="education", namespace="bio")
+	public static class Education {
+		public ArrayList<Institution> institution;
+	}
+
+	@XmlType(name="profession", namespace="bio")
+	public static class Profession {
+		public ArrayList<Experience> experience;
+	}
+
+	@XmlType(name="political", namespace="bio")
+	public static class Political {
+		public ArrayList<Experience> experience;
+	}
+	
+	@XmlType(name="congMembership", namespace="bio")
+	public static class CongMembership {
+		public ArrayList<Experience> experience;
+	}
+
+	@XmlType(name="orgMembership", namespace="bio")
+	public static class OrgMembership {
+		public ArrayList<Experience> experience;
+	}
+
+	@XmlType(name="institution", namespace="bio")
+	public static class Institution {
+		 public String degree;
+		 public String field;
+		 public String school;
+		 public String span;
+		 public String gpa;
+	}
+
+	@XmlType(name="experience", namespace="bio")
+	public static class Experience {
+		 public String title;
+		 public String organization;
+		 public String span;
+		 public String special;
+		 public String district;
+		 public String fullText;
+	}
 
 }
-

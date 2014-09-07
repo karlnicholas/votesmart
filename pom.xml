@@ -4,7 +4,7 @@
 	<groupId>org.votesmart</groupId>
 	<artifactId>votesmart-client</artifactId>
 	<packaging>jar</packaging>
-	<version>1.0.2</version>
+	<version>1.1.0</version>
 	<description>RESTful Client for VoteSmart.org API</description>
 	<licenses>
 		<license>

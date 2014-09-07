@@ -2,6 +2,7 @@ package org.votesmart.classes;
 
 import org.votesmart.api.*;
 import org.votesmart.data.AddlBio;
+import org.votesmart.data.BioOld;
 import org.votesmart.data.Bio;
 
 /**
@@ -14,7 +15,7 @@ import org.votesmart.data.Bio;
  * CandidateBio.getBio()
  * This method grabs the main bio for each candidate.
  * Input: candidateId*
- * Output: {@link Bio}: Candidate biographical information
+ * Output: {@link BioOld}: Candidate biographical information
  * 
  * CandidateBio.getAddlBio()
  * This method grabs the extended bio for each candidate that has one.
@@ -52,12 +53,13 @@ public class CandidateBioClass extends ClassesBase {
 	 * This method grabs the main bio for each candidate.
 	 * 
 	 * @param candidateId
-	 * @return {@link Bio}: Candidate biographical information
+	 * @return {@link BioOld}: Candidate biographical information
 	 */
-	public Bio getBio(String candidateId) throws VoteSmartException, VoteSmartErrorException {
-		return api.query("CandidateBio.getBio", new ArgMap("candidateId", candidateId), Bio.class );
+/*	
+	public BioOld getBio(String candidateId) throws VoteSmartException, VoteSmartErrorException {
+		return api.query("CandidateBio.getBio", new ArgMap("candidateId", candidateId), BioOld.class );
 	}
-	
+*/	
 	/**
 	 * This method grabs the extended bio for each candidate that has one.
 	 * 
@@ -68,4 +70,14 @@ public class CandidateBioClass extends ClassesBase {
 		return api.query("CandidateBio.getAddlBio", new ArgMap("candidateId", candidateId), AddlBio.class );
 	}
 	
+	/**
+	 * This method grabs the extended bio for each candidate that has one. 
+	 * It uses the updated version 'getDetailedBio' of the call.
+	 * 
+	 * @param candidateId
+	 * @return {@link AddlBio}: Additional items in a list.
+	 */
+	public Bio getBio(String candidateId) throws VoteSmartException, VoteSmartErrorException {
+		return api.query("CandidateBio.getDetailedBio", new ArgMap("candidateId", candidateId), Bio.class );
+	}
 }

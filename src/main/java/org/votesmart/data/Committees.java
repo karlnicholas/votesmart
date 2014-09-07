@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Committees extends GeneralInfoBase {
 	public ArrayList<Committee> committee;
 	
-	@XmlType(name="commiittee", namespace="committees")
+	@XmlType(name="committee", namespace="committees")
 	public static class Committee {
 		public String committeeId;
 		public String parentId;

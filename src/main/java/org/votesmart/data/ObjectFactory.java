@@ -25,6 +25,9 @@ public class ObjectFactory {
 	public Bio createBio() {
 		return new Bio();
 	}
+	public Bio createDetailedBio() {
+		return new Bio();
+	}
 	public Bill createBill() {
 		return new Bill();
 	}

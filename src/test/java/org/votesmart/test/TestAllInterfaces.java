@@ -50,25 +50,25 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// Office getOfficesByLevel
 		Offices offices = officeClass.getOfficesByLevel(officeLevel.officeLevelId);
-		assertEquals( offices.office.size(), 367);
+		assertEquals( offices.office.size(), 365);
 
 		// Office getOfficesByType
 		offices = officeClass.getOfficesByType(officeType.officeTypeId);
-		assertEquals( offices.office.size(), 4);
+		assertEquals( offices.office.size(), 3);
 
 		// Hold office information for later use.
 		Offices.Office office;
 		
 		// Office getOfficesByTypeLevel
 		offices = officeClass.getOfficesByTypeLevel(officeType.officeTypeId, officeLevel.officeLevelId);
-		assertEquals( offices.office.size(), 4);
+		assertEquals( offices.office.size(), 3);
 		office = offices.office.get(0);
-		assertEquals( office.officeId, "535" );
+		assertEquals( office.officeId, "7" );
 
 		// Office getOfficesByBranchLevel
 		offices = officeClass.getOfficesByBranchLevel(officeBranch.officeBranchId, officeLevel.officeLevelId);
-		assertEquals( offices.office.size(), 4);
-		office = offices.office.get(1);
+		assertEquals( offices.office.size(), 3);
+		office = offices.office.get(0);
 		assertEquals( office.name, "State Assembly");
 		
 		// Determine California State Id
@@ -101,49 +101,49 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// Officials		
 		CandidateList candidates = officialsClass.getStatewide();
-		assertEquals( candidates.candidate.size(), 450 );;
+		assertEquals( candidates.candidate.size(), 456 );;
 		
 		// Officials for CA
 		candidates = officialsClass.getStatewide(state.stateId);
-		assertEquals( candidates.candidate.size(), 1841 );
+		assertEquals( candidates.candidate.size(), 1862 );
 		CandidateList.Candidate candidate = candidates.candidate.get(0);
 		assertEquals( candidate.candidateId, "114804" );
 		assertEquals( candidate.firstName, "Roger" );
 		
 		// Officials for last officeType (Legislature), for state
 		candidates = officialsClass.getByOfficeTypeState(officeType.officeTypeId, state.stateId);
-		assertEquals( candidates.candidate.size(), 118 );
+		assertEquals( candidates.candidate.size(), 119 );
 		candidate = candidates.candidate.get(0);
 		assertEquals( candidate.candidateId, "81542");
 
 		// Officials for last office (State Assembly), for state
 		candidates = officialsClass.getByOfficeState(office.officeId, state.stateId);
-		assertEquals( candidates.candidate.size(), 78 );
+		assertEquals( candidates.candidate.size(), 79 );
 
 		CandidatesClass candidatesClass = new CandidatesClass(this);
 		// Candidates for last office, for state
 		candidates = candidatesClass.getByOfficeState(office.officeId, state.stateId);
-		assertEquals( candidates.candidate.size(), 25 );
+		assertEquals( candidates.candidate.size(), 238 );
 
 
 		// Candidates for last office, for state
 		candidates = candidatesClass.getByOfficeTypeState(officeType.officeTypeId, state.stateId);
-		assertEquals( candidates.candidate.size(), 50);
+		assertEquals( candidates.candidate.size(), 309);
 
 		// candidates for district
 		try {
 			candidates = candidatesClass.getByDistrict(district.districtId);
-			assertEquals( candidates.candidate.size(), 0 );
+			assertEquals( candidates.candidate.size(), 2 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 		
 		try {
 			CandidateList candidatesByLastName = candidatesClass.getByLastname(candidate.lastName);
-			assertEquals( candidatesByLastName.candidate.size(), 0 );
+			assertEquals( candidatesByLastName.candidate.size(), 1 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 		
 		try {
 			CandidateList candidatesByLastName = candidatesClass.getByLevenshtein(candidate.lastName);
-			assertEquals( candidatesByLastName.candidate.size(), 0 );
+			assertEquals( candidatesByLastName.candidate.size(), 2 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 
 		// Addresses of  
@@ -151,7 +151,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		
 		// address of Office (State Assembly)
 		AddressAddress addressOffice = addressClass.getOfficeByOfficeState(office.officeId, state.stateId);
-		assertEquals( addressOffice.office.size(), 173 );
+		assertEquals( addressOffice.office.size(), 179 );
 		assertEquals( addressOffice.office.get(0).address.street, "3 Park Plaza, Suite 150" );  
 		assertEquals( addressOffice.office.get(0).address.city, "Irvine" );
 		assertEquals( addressOffice.office.get(0).address.state, "CA" );
@@ -162,15 +162,15 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		// address of Official
 		AddressOffice addressOffical = addressClass.getOffice(candidate.candidateId);
 		assertEquals( addressOffical.office.size(), 2);
-		assertEquals( addressOffical.office.get(0).address.street, "P.O. Box 942849, Room 4098" );
-		assertEquals( addressOffical.office.get(0).address.city, "Sacramento" );
+		assertEquals( addressOffical.office.get(0).address.street, "1150 Osos Street, Suite 207" );
+		assertEquals( addressOffical.office.get(0).address.city, "San Luis Obispo" );
 		assertEquals( addressOffical.office.get(0).address.state, "CA" );
-		assertEquals( addressOffical.office.get(0).address.zip, "94249-0035" );
+		assertEquals( addressOffical.office.get(0).address.zip, "93401" );
 
 		// WebAddress of Official
 		WebAddress webAddressOffical = addressClass.getOfficeWebAddress(candidate.candidateId);
 		assertEquals( webAddressOffical.address.size(), 3 );
-		assertEquals( webAddressOffical.address.get(0).webAddress, "http://arc.asm.ca.gov/member/AD35/" );
+		assertEquals( webAddressOffical.address.get(0).webAddress, "Assemblymember.Achadjian@assembly.ca.gov" );
 		
 		// Candidate biographical 
 		CandidateBioClass candidateBioClass = new CandidateBioClass(this);
@@ -180,9 +180,9 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		assertEquals( bio.candidate.birthDate, "" );
 		assertEquals( bio.candidate.birthPlace, "Lebanon" );
 		assertEquals( bio.candidate.gender, "Male" );
-		assertEquals( bio.candidate.profession, "Small Business Owner, 1978-present" );
+		assertEquals( bio.candidate.profession.experience.get(0).title, "Small Business Owner" );
 		assertEquals( bio.candidate.religion, "" );
-		assertEquals( bio.office.committee.size(), 7 );
+		assertEquals( bio.office.committee.size(), 8 );
 		assertEquals( bio.office.committee.get(0).committeeName, "Accountability and Administrative Review");
 		
 		// save committee for later
@@ -239,53 +239,53 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		Leaders leaders = leadershipClass.getOfficials(position.leadershipId, state.stateId);
 		assertEquals( leaders.leader.size(), 1 );
 		Leaders.Leader leader = leaders.leader.get(0);
-		assertEquals( leader.candidateId, "104400");
+		assertEquals( leader.candidateId, "70372");
 		
 		// Npat class
 		NpatClass npatClass = new NpatClass(this);
 		// Npat if it exists
 		Npat npat = npatClass.getNpat(leader.candidateId);
-		assertEquals( npat.surveyMessage, "John A. Pérez refused to tell citizens where he/she stands on any of the issues addressed in the 2012 Political Courage Test, despite repeated requests from Vote Smart, national media, and prominent political leaders.");
+		assertEquals( npat.surveyMessage, "Toni G. Atkins's processing deadline has not passed. The result of Toni G. Atkins's Political Courage Test will be released in upcoming weeks.<br><br>Deadline for returning the National Political Awareness Test is 10/08/2014");
 		
 		// Rating class
 		RatingClass ratingClass = new RatingClass(this);
 		// all categories
 		Categories categories = ratingClass.getCategories();
-		assertEquals( categories.category.size(), 40 );
+		assertEquals( categories.category.size(), 36 );
 		
 		// state categories
 		categories = ratingClass.getCategories(state.stateId);
-		assertEquals( categories.category.size(), 25 );
+		assertEquals( categories.category.size(), 22 );
 		CategoryMin category = categories.category.get(0);
-		assertEquals( category.categoryId, "2" );
+		assertEquals( category.categoryId, "75" );
 		
 		// state sigs (Special Interest Groups)
 		Sigs sigs = ratingClass.getSigList(category.categoryId, state.stateId);
-		assertEquals( sigs.sig.size(), 5);
+		assertEquals( sigs.sig.size(), 1);
 		Sigs.Sig sigsSig = sigs.sig.get(0);
-		assertEquals( sigsSig.name,  "California Abortion and Reproductive Rights League");
+		assertEquals( sigsSig.name,  "Planned Parenthood Affiliates of California");
 		
 		// Sig
 		Sig sig = ratingClass.getSig(sigs.sig.get(0).sigId);
 		// there be special characters here
-		assertEquals( sig.description, "Accelerating life science success for Southern California");
-		assertEquals( sig.address, "111 Pine Street, Suite 1500");
+		assertEquals( sig.description, "PPACs mission is to create a personally and politically safe climate in which individuals have universal and unfettered access to sexual and reproductive health service and are free to follow their own beliefs, values and moral code when making decisions about these services.");
+		assertEquals( sig.address, "555 Capitol Mall, Suite 510");
 		
 		// SigRatings
 		SigRating sigRatings = ratingClass.getSigRatings(sig.sigId);
-		assertEquals( sigRatings.rating.size(), 1 );
+		assertEquals( sigRatings.rating.size(), 13 );
 		SigRating.Rating sigRating = sigRatings.rating.get(0);
-		assertEquals( sigRating.ratingId, "5613" );
+		assertEquals( sigRating.ratingId, "7004" );
 
 		// Sig ratings for Candidate
 		CandidateRating candidateRating = ratingClass.getCandidateRating(leader.candidateId);
-		assertEquals( candidateRating.rating.size(), 106);
+		assertEquals( candidateRating.rating.size(), 69);
 		
 		// Rating done by SIG group
 		Rating rating = ratingClass.getRating(sigRating.ratingId);
-		assertEquals( rating.candidateRating.size(), 117 );
+		assertEquals( rating.candidateRating.size(), 119 );
 		Rating.CandidateRating ratingCandidateRating = rating.candidateRating.get(0);
-		assertEquals( ratingCandidateRating.rating, "100");
+		assertEquals( ratingCandidateRating.rating, "0");
 		
 		// Votes class
 		VotesClass votesClass = new VotesClass(this);
@@ -296,10 +296,10 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		
 		// for CA
 		votesCategories = votesClass.getCategories("2013", state.stateId);
-		assertEquals( votesCategories.category.size(), 21 );
+		assertEquals( votesCategories.category.size(), 22 );
 		CategoryMin votesCategory = votesCategories.category.get(0); 
-		assertEquals( votesCategory.categoryId, "2" );
-		assertEquals( votesCategory.name, "Abortion" );
+		assertEquals( votesCategory.categoryId, "75" );
+		assertEquals( votesCategory.name, "Abortion and Reproductive" );
 
 		// for category, for 2013, for CA
 		Bills bills = votesClass.getBillsByCategoryYearState(votesCategory.categoryId, "2013", state.stateId);
@@ -311,34 +311,34 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// by Official, Year, Office
 		bills = votesClass.getBillsByOfficialYearOffice(candidate.candidateId, "2013", office.officeId);
-		assertEquals( bills.bill.size(), 27 );
+		assertEquals( bills.bill.size(), 29 );
 
 		// by Official, Category, Office
 		bills = votesClass.getBillsByOfficialCategoryOffice(candidate.candidateId, votesCategory.categoryId, office.officeId);
 		assertEquals( bills.bill.size(), 2 );
-		assertEquals( bills.bill.get(0).billId, "16725" );
-		assertEquals( bills.bill.get(0).title, "Authorizes Certain Individuals to Perform Aspiration Abortion Procedures");
+		assertEquals( bills.bill.get(0).billId, "15682" );
+		assertEquals( bills.bill.get(0).title, "Expands Cash Assistance Programs for Pregnant Teenagers");
 
 		// Bill
 		Bill bill = votesClass.getBill(bills.bill.get(0).billId);
-		assertEquals( bill.billNumber, "AB 154");
+		assertEquals( bill.billNumber, "AB 1640");
 		Bill.Sponsors.Sponsor sponsor = bill.sponsors.sponsor.get(0);
-		assertEquals( sponsor.candidateId, "70372" );
-		assertEquals( sponsor.name, "Toni  Atkins" );
-		assertEquals( bill.actions.action.size(), 4 );
-		Bill.Actions.Action actionOfBill = bill.actions.action.get(0);
-		assertEquals( actionOfBill.actionId, "46074" );
-		assertEquals( actionOfBill.statusDate, "2013-08-30" );
+		assertEquals( sponsor.candidateId, "120230" );
+		assertEquals( sponsor.name, "Holly J. Mitchell" );
+		assertEquals( bill.actions.action.size(), 5 );
+		Bill.Actions.Action actionOfBill = bill.actions.action.get(1);
+		assertEquals( actionOfBill.actionId, "41447" );
+		assertEquals( actionOfBill.statusDate, "2012-08-27" );
 		
 		// by Action
 		BillAction action = votesClass.getBillAction(actionOfBill.actionId);
-		assertEquals( action.actionId, "46074" );
-		assertEquals( action.title, "Authorizes Certain Individuals to Perform Aspiration Abortion Procedures");
+		assertEquals( action.actionId, "41447" );
+		assertEquals( action.title, "Expands Cash Assistance Programs for Pregnant Teenagers");
 		
 		// Votes for Action
 		BillActionVotes billActionVotes = votesClass.getBillActionVotes(actionOfBill.actionId);
-		assertEquals( billActionVotes.vote.size(), 78 );
-		assertEquals( billActionVotes.vote.get(0).action, "Nay" );
+		assertEquals( billActionVotes.vote.size(), 80 );
+		assertEquals( billActionVotes.vote.get(0).action, "Yea" );
 		
 		// Votes by sponsor
 		billActionVotes = votesClass.getBillActionVoteByOfficial(actionOfBill.actionId, sponsor.candidateId);
@@ -354,11 +354,11 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// by Sponsor, Category
 		bills = votesClass.getBillsBySponsorCategory(sponsor.candidateId, votesCategory.categoryId);
-		assertEquals( bills.bill.size(), 1 );
+		assertEquals( bills.bill.size(), 2 );
 
 		// by Sponsor, Year
 		bills = votesClass.getBillsBySponsorYear(sponsor.candidateId, "2013");
-		assertEquals( bills.bill.size(), 4 );
+		assertEquals( bills.bill.size(), 2 );
 		
 		// 10 bills from CA
 		bills = votesClass.getBillsByStateRecent("10", state.stateId);
@@ -366,7 +366,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		for( BillMin abill: bills.bill ) {
 			billsNumbers.append( abill.billNumber + ", ");
 		}
-		assertEquals( billsNumbers.toString(), "S Amdt 2013, H J Res 99, S J Res 26, HR 3273, H J Res 90, S 1569, H J Res 85, H J Res 84, H J Res 75, H J Res 77, ");
+		assertEquals( billsNumbers.toString(), "HR 5272, S Amdt 3584, S Amdt 3585, HR 5230, S Amdt 3583, H Res 676, H Amdt 1098, H Amdt 1086, H Amdt 1093, H Amdt 1079, ");
 		
 		// ByBillNumber
 		String billNumber = bills.bill.get(0).billNumber;
@@ -375,7 +375,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// BillsByOfficial
 		BillsByOfficial billsByOffical = votesClass.getByOfficial(candidate.candidateId, candidate.officeId);
-		assertEquals( billsByOffical.bill.size(), 145 );
+		assertEquals( billsByOffical.bill.size(), 159 );
 			
 		// Election Class
 		ElectionClass electionClass = new ElectionClass(this);
@@ -400,13 +400,13 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		try {
 			// an election for a zip-code
 			ElectionByZip electionByZip = electionClass.getElectionByZip(zip5);
-			assertEquals( electionByZip.election.size(), 0 );
+			assertEquals( electionByZip.election.size(), 8 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 		
 		// candidates in a zip
 		try {
 			CandidateList zipCandidates = candidatesClass.getByZip(zip5);
-			assertEquals( zipCandidates.candidate.size(), 0 );
+			assertEquals( zipCandidates.candidate.size(), 72 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 		
 		// districts in a zip
@@ -428,12 +428,12 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		// Address for candidate campaign.
 		try {
 			AddressOffice addressStageCandidate = addressClass.getCampaign(stageCandidate.candidateId);
-			assertEquals( addressStageCandidate.office.size(), 0 );
+			assertEquals( addressStageCandidate.office.size(), 2 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 
 		try {
 			WebAddress webStageCandidate = addressClass.getCampaignWebAddress(stageCandidate.candidateId);
-			assertEquals( webStageCandidate.address.size(), 0 );
+			assertEquals( webStageCandidate.address.size(), 1 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 		
 		try {
@@ -487,7 +487,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		
 		// by Levenshtein
 		candidates = officialsClass.getByLevenshtein(candidate.lastName);
-		assertEquals( candidates.candidate.size(), 2 );
+		assertEquals( candidates.candidate.size(), 3 );
 
 		// by District
 		candidates = officialsClass.getByDistrict(district.districtId);

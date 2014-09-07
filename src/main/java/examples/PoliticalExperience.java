@@ -48,16 +48,41 @@ public class PoliticalExperience {
 
 		// Candidate biographical 
 		CandidateBioClass candidateBioClass = new CandidateBioClass();
-		
+/*		
+		// Bio of Official
+		BioOld bio = candidateBioClass.getBio(candidate.candidateId);
+		System.out.println( "Bio for " + bio.candidate.firstName + " " + bio.candidate.lastName + " includes:");
+		System.out.println( "	Birthdate: \t" + bio.candidate.birthDate );
+		System.out.println( "	Birthplace: \t" + bio.candidate.birthPlace );
+		System.out.println( "	Gender: \t" + bio.candidate.gender );
+//		System.out.println( "	Education: \t" + bio.candidate.education );
+//		System.out.println( "	Profession: \t" + bio.candidate.profession );
+		System.out.println( "	Religion: \t" + bio.candidate.religion );
+*/
 		// Bio of Official
 		Bio bio = candidateBioClass.getBio(candidate.candidateId);
 		System.out.println( "Bio for " + bio.candidate.firstName + " " + bio.candidate.lastName + " includes:");
 		System.out.println( "	Birthdate: \t" + bio.candidate.birthDate );
 		System.out.println( "	Birthplace: \t" + bio.candidate.birthPlace );
 		System.out.println( "	Gender: \t" + bio.candidate.gender );
-		System.out.println( "	Education: \t" + bio.candidate.education );
-		System.out.println( "	Profession: \t" + bio.candidate.profession );
+//		System.out.println( "	Education: \t" + bio.candidate.education );
+//		System.out.println( "	Profession: \t" + bio.candidate.profession );
 		System.out.println( "	Religion: \t" + bio.candidate.religion );
+		for( Bio.Institution institution: bio.candidate.education.institution ) {
+			System.out.println( "	Education: \t" + institution.degree + " from " + institution.school );
+		}
+		for( Bio.Experience experience: bio.candidate.profession.experience ) {
+			System.out.println( "	Profession: \t" + experience.title + " at " + experience.organization );
+		}
+		for( Bio.Experience experience: bio.candidate.political.experience ) {
+			System.out.println( "	Political: \t" + experience.title + " at " + experience.organization );
+		}
+		for( Bio.Experience experience: bio.candidate.congMembership.experience ) {
+			System.out.println( "	CongMembership: \t" + experience.title + " at " + experience.organization );
+		}
+		for( Bio.Experience experience: bio.candidate.orgMembership.experience ) {
+			System.out.println( "	OrgMembership: \t" + experience.title + " at " + experience.organization );
+		}
 
 	}
 }
