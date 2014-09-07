@@ -6,14 +6,14 @@ additional information and terms of use.
 The typical user will typically use the classes in the org.votesmart.classes package.
 Java version 1.6 at a minimum is required. No additional jars are required.
 
-Version 1.0.2 has been put in <a href="http://search.maven.org/#browse">The Central Repository</a>.
+Version 1.1.0 has been put in <a href="http://search.maven.org/#browse">The Central Repository</a>.
 
 If you are using maven, then you can add this to your project .pom file to include this client:
 
     <dependency>
         <groupId>org.votesmart</groupId>
         <artifactId>votesmart-client</artifactId>
-        <version>1.0.2</version>
+        <version>1.1.0</version>
     </dependency>
 
 Otherwise, you can get everything from the <a href="https://github.com/karlnicholas/votesmart/releases">releases</a> tab above or go to <a href="http://search.maven.org/#browse">The Central Repository</a> website and download from there.
