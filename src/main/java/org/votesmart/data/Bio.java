@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-import org.votesmart.data.BioOld.Office.Committee;
-
 /**
  * <pre>
  * This method expands on getBio() by expanding the 
@@ -145,6 +143,18 @@ public class Bio extends GeneralInfoBase {
 		 public String special;
 		 public String district;
 		 public String fullText;
+	}
+	
+	@XmlType(name="election", namespace="bio")
+	public static class Election {
+		public String office;
+		public String officeType;
+		public String parties;
+		public String district;
+		public String districtId;
+		public String stateId;
+		public String status;
+		public String ballotName;
 	}
 
 }
