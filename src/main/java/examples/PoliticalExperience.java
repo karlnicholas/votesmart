@@ -44,7 +44,7 @@ public class PoliticalExperience {
 		
 		CandidateList candidateList = candidatesClass.getByLastname("Chesbro", "2010");
 		CandidateList.Candidate candidate = candidateList.candidate.get(0);
-		System.out.println(candidate.electionDistrictName);
+		System.out.println(candidate.officeDistrictName);
 
 		// Candidate biographical 
 		CandidateBioClass candidateBioClass = new CandidateBioClass();

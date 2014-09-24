@@ -7,18 +7,63 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <pre>
- * This method expands on getBio() by expanding the 
+ * Output: 
+ * bio.candidate.crpId (OpenSecrets ID), 
+ *  bio.candidate.firstName, 
+ *  bio.candidate.nickName, 
+ *  bio.candidate.middleName, 
+ *  bio.candidate.lastName, 
+ *  bio.candidate.suffix, 
+ *  bio.candidate.birthDate, 
+ *  bio.candidate.birthPlace, 
+ *  bio.candidate.pronunciation, 
+ *  bio.candidate.gender, 
+ *  bio.candidate.family, 
+ *  bio.candidate.photo, 
+ *  bio.candidate.homeCity, 
+ *  bio.candidate.homeState, 
+ *  bio.candidate.education*, (see below) 
+ *  bio.candidate.profession*, (see below)
+ *  bio.candidate.political, 
+ *  bio.candidate.religion, 
+ *  bio.candidate.congMembership*, (see below) 
+ *  bio.candidate.orgMembership*, (see below)
+ *  bio.candidate.specialMsg, 
+ *  bio.office.parties, 
+ *  bio.office.title, 
+ *  bio.office.shortTitle, 
+ *  bio.office.name, 
+ *  bio.office.type, 
+ *  bio.office.status, 
+ *  bio.office.firstElect, 
+ *  bio.office.lastElect, 
+ *  bio.office.nextElect, 
+ *  bio.office.termStart, 
+ *  bio.office.termEnd, 
+ *  bio.office.district, 
+ *  bio.office.districtId, 
+ *  bio.office.stateId, 
+ *  bio.office.committee*.committeeId, 
+ *  bio.office.committee*.committeeName, 
+ *  bio.election*.office, 
+ *  bio.election*.officeId, 
+ *  bio.election*.officeType, 
+ *  bio.election*.parties, 
+ *  bio.election*.district, 
+ *  bio.election*.districtId, 
+ *  bio.election*.status, 
+ *  bio.election*.ballotName.
+ *  
+ * Version 1.1.0 and above expands on 
  * education, profession, political, orgMembership, 
  * and congMembership elements.
- * 
- * Output: 
- * Includes all elements for getBio(), and expands upon the following: 
  * 
  *  bio.candidate.education*.degree
  *  bio.candidate.education*.field
  *  bio.candidate.education*.school
  *  bio.candidate.education*.span
  *  bio.candidate.education*.gpa
+ *  bio.candidate.education*.fullText (Added version 1.1.2)
  *  bio.candidate.profession*.title
  *  bio.candidate.profession*.organization
  *  bio.candidate.profession*.span
@@ -133,6 +178,7 @@ public class Bio extends GeneralInfoBase {
 		 public String school;
 		 public String span;
 		 public String gpa;
+		 public String fullText;
 	}
 
 	@XmlType(name="experience", namespace="bio")

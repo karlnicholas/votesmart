@@ -50,7 +50,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// Office getOfficesByLevel
 		Offices offices = officeClass.getOfficesByLevel(officeLevel.officeLevelId);
-		assertEquals( offices.office.size(), 365);
+		assertEquals( offices.office.size(), 366);
 
 		// Office getOfficesByType
 		offices = officeClass.getOfficesByType(officeType.officeTypeId);
@@ -101,7 +101,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// Officials		
 		CandidateList candidates = officialsClass.getStatewide();
-		assertEquals( candidates.candidate.size(), 456 );;
+		assertEquals( candidates.candidate.size(), 455 );;
 		
 		// Officials for CA
 		candidates = officialsClass.getStatewide(state.stateId);
@@ -251,55 +251,57 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		RatingClass ratingClass = new RatingClass(this);
 		// all categories
 		Categories categories = ratingClass.getCategories();
-		assertEquals( categories.category.size(), 36 );
+		assertEquals( categories.category.size(), 37 );
 		
 		// state categories
 		categories = ratingClass.getCategories(state.stateId);
-		assertEquals( categories.category.size(), 22 );
+		assertEquals( categories.category.size(), 23 );
 		CategoryMin category = categories.category.get(0);
-		assertEquals( category.categoryId, "75" );
+		assertEquals( category.categoryId, "2" );
 		
 		// state sigs (Special Interest Groups)
 		Sigs sigs = ratingClass.getSigList(category.categoryId, state.stateId);
-		assertEquals( sigs.sig.size(), 1);
+		assertEquals( sigs.sig.size(), 5);
 		Sigs.Sig sigsSig = sigs.sig.get(0);
-		assertEquals( sigsSig.name,  "Planned Parenthood Affiliates of California");
+		assertEquals( sigsSig.name,  "California Abortion and Reproductive Rights League");
 		
 		// Sig
 		Sig sig = ratingClass.getSig(sigs.sig.get(0).sigId);
 		// there be special characters here
-		assertEquals( sig.description, "PPACs mission is to create a personally and politically safe climate in which individuals have universal and unfettered access to sexual and reproductive health service and are free to follow their own beliefs, values and moral code when making decisions about these services.");
-		assertEquals( sig.address, "555 Capitol Mall, Suite 510");
+		assertEquals( sig.description, "This group is now NARAL Pro-Choice California. Its archives are kept here as a public service."
++"\n\n"
++"Accelerating life science success for Southern California");
+		assertEquals( sig.address, "111 Pine Street, Suite 1500");
 		
 		// SigRatings
 		SigRating sigRatings = ratingClass.getSigRatings(sig.sigId);
-		assertEquals( sigRatings.rating.size(), 13 );
+		assertEquals( sigRatings.rating.size(), 1 );
 		SigRating.Rating sigRating = sigRatings.rating.get(0);
-		assertEquals( sigRating.ratingId, "7004" );
+		assertEquals( sigRating.ratingId, "5613" );
 
 		// Sig ratings for Candidate
 		CandidateRating candidateRating = ratingClass.getCandidateRating(leader.candidateId);
-		assertEquals( candidateRating.rating.size(), 69);
+		assertEquals( candidateRating.rating.size(), 83);
 		
 		// Rating done by SIG group
 		Rating rating = ratingClass.getRating(sigRating.ratingId);
-		assertEquals( rating.candidateRating.size(), 119 );
+		assertEquals( rating.candidateRating.size(), 117 );
 		Rating.CandidateRating ratingCandidateRating = rating.candidateRating.get(0);
-		assertEquals( ratingCandidateRating.rating, "0");
+		assertEquals( ratingCandidateRating.rating, "100");
 		
 		// Votes class
 		VotesClass votesClass = new VotesClass(this);
 		
 		// total votesCategories
 		VotesCategories votesCategories = votesClass.getCategories("2013");
-		assertEquals( votesCategories.category.size(), 32 );		
+		assertEquals( votesCategories.category.size(), 33 );		
 		
 		// for CA
 		votesCategories = votesClass.getCategories("2013", state.stateId);
-		assertEquals( votesCategories.category.size(), 22 );
+		assertEquals( votesCategories.category.size(), 24 );
 		CategoryMin votesCategory = votesCategories.category.get(0); 
-		assertEquals( votesCategory.categoryId, "75" );
-		assertEquals( votesCategory.name, "Abortion and Reproductive" );
+		assertEquals( votesCategory.categoryId, "2" );
+		assertEquals( votesCategory.name, "Abortion" );
 
 		// for category, for 2013, for CA
 		Bills bills = votesClass.getBillsByCategoryYearState(votesCategory.categoryId, "2013", state.stateId);
@@ -307,7 +309,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// by Official, Category, Office
 		bills = votesClass.getBillsByOfficialCategoryOffice(leader.candidateId, votesCategory.categoryId);
-		assertEquals( bills.bill.size(), 2 );
+		assertEquals( bills.bill.size(), 3 );
 
 		// by Official, Year, Office
 		bills = votesClass.getBillsByOfficialYearOffice(candidate.candidateId, "2013", office.officeId);
@@ -316,29 +318,29 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		// by Official, Category, Office
 		bills = votesClass.getBillsByOfficialCategoryOffice(candidate.candidateId, votesCategory.categoryId, office.officeId);
 		assertEquals( bills.bill.size(), 2 );
-		assertEquals( bills.bill.get(0).billId, "15682" );
-		assertEquals( bills.bill.get(0).title, "Expands Cash Assistance Programs for Pregnant Teenagers");
+		assertEquals( bills.bill.get(0).billId, "16725" );
+		assertEquals( bills.bill.get(0).title, "Authorizes Certain Individuals to Perform Aspiration Abortion Procedures");
 
 		// Bill
 		Bill bill = votesClass.getBill(bills.bill.get(0).billId);
-		assertEquals( bill.billNumber, "AB 1640");
+		assertEquals( bill.billNumber, "AB 154");
 		Bill.Sponsors.Sponsor sponsor = bill.sponsors.sponsor.get(0);
-		assertEquals( sponsor.candidateId, "120230" );
-		assertEquals( sponsor.name, "Holly J. Mitchell" );
+		assertEquals( sponsor.candidateId, "70372" );
+		assertEquals( sponsor.name, "Toni G. Atkins" );
 		assertEquals( bill.actions.action.size(), 5 );
 		Bill.Actions.Action actionOfBill = bill.actions.action.get(1);
-		assertEquals( actionOfBill.actionId, "41447" );
-		assertEquals( actionOfBill.statusDate, "2012-08-27" );
+		assertEquals( actionOfBill.actionId, "46074" );
+		assertEquals( actionOfBill.statusDate, "2013-08-30" );
 		
 		// by Action
 		BillAction action = votesClass.getBillAction(actionOfBill.actionId);
-		assertEquals( action.actionId, "41447" );
-		assertEquals( action.title, "Expands Cash Assistance Programs for Pregnant Teenagers");
+		assertEquals( action.actionId, "46074" );
+		assertEquals( action.title, "Authorizes Certain Individuals to Perform Aspiration Abortion Procedures");
 		
 		// Votes for Action
 		BillActionVotes billActionVotes = votesClass.getBillActionVotes(actionOfBill.actionId);
-		assertEquals( billActionVotes.vote.size(), 80 );
-		assertEquals( billActionVotes.vote.get(0).action, "Yea" );
+		assertEquals( billActionVotes.vote.size(), 78 );
+		assertEquals( billActionVotes.vote.get(0).action, "Nay" );
 		
 		// Votes by sponsor
 		billActionVotes = votesClass.getBillActionVoteByOfficial(actionOfBill.actionId, sponsor.candidateId);
@@ -354,11 +356,11 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// by Sponsor, Category
 		bills = votesClass.getBillsBySponsorCategory(sponsor.candidateId, votesCategory.categoryId);
-		assertEquals( bills.bill.size(), 2 );
+		assertEquals( bills.bill.size(), 1 );
 
 		// by Sponsor, Year
 		bills = votesClass.getBillsBySponsorYear(sponsor.candidateId, "2013");
-		assertEquals( bills.bill.size(), 2 );
+		assertEquals( bills.bill.size(), 4 );
 		
 		// 10 bills from CA
 		bills = votesClass.getBillsByStateRecent("10", state.stateId);
@@ -366,7 +368,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		for( BillMin abill: bills.bill ) {
 			billsNumbers.append( abill.billNumber + ", ");
 		}
-		assertEquals( billsNumbers.toString(), "HR 5272, S Amdt 3584, S Amdt 3585, HR 5230, S Amdt 3583, H Res 676, H Amdt 1098, H Amdt 1086, H Amdt 1093, H Amdt 1079, ");
+		assertEquals( billsNumbers.toString(), "H Amdt 1141, H Res 644, H J Res 124, HR 5272, S Amdt 3585, S Amdt 3583, HR 5230, S Amdt 3584, H Res 676, H Amdt 1098, ");
 		
 		// ByBillNumber
 		String billNumber = bills.bill.get(0).billNumber;
@@ -375,7 +377,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 
 		// BillsByOfficial
 		BillsByOfficial billsByOffical = votesClass.getByOfficial(candidate.candidateId, candidate.officeId);
-		assertEquals( billsByOffical.bill.size(), 159 );
+		assertEquals( billsByOffical.bill.size(), 181 );
 			
 		// Election Class
 		ElectionClass electionClass = new ElectionClass(this);
@@ -406,7 +408,7 @@ public class TestAllInterfaces extends TestVoteSmartBase {
 		// candidates in a zip
 		try {
 			CandidateList zipCandidates = candidatesClass.getByZip(zip5);
-			assertEquals( zipCandidates.candidate.size(), 72 );
+			assertEquals( zipCandidates.candidate.size(), 80 );
 		} catch (VoteSmartErrorException e) { handleError(e); }
 		
 		// districts in a zip

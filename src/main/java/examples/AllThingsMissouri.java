@@ -244,7 +244,7 @@ public class AllThingsMissouri {
 		NpatClass npatClass = new NpatClass();
 		// Npat if it exists
 		Npat npat = npatClass.getNpat(leader.candidateId);
-		System.out.println("Npat survey message for leader " + candidate.ballotName + " is " + npat.surveyMessage + "\n");
+		System.out.println("Npat survey message for leader " + candidate.prefferedName + " is " + npat.surveyMessage + "\n");
 		
 		// Rating class
 		RatingClass ratingClass = new RatingClass();
