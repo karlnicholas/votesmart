@@ -42,7 +42,7 @@ public class SalientTopics2013 {
 
 	public static void main(String... args) throws Exception {
 		
-		String state = "OH";
+		String state = "SD";
 		// Votes class
 		VotesClass votesClass = new VotesClass();
 		Set<String> topicBills = new TreeSet<String>();

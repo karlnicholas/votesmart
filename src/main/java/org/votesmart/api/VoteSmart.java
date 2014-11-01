@@ -201,7 +201,7 @@ public class VoteSmart implements VoteSmartAPI {
 		BufferedWriter bwriter = null;
 		HttpURLConnection conn = null;
 		try {
-		    char[] buffer = new char[262144];
+		    char[] buffer = new char[2^13];
 			conn = getConnectionFromAPI(method, argMap);
 			String charSet = getCharset(conn);
 			breader = new BufferedReader(new InputStreamReader( conn.getInputStream(), charSet ) );
@@ -226,10 +226,10 @@ public class VoteSmart implements VoteSmartAPI {
 			{
 				String value = argMap.get(key);
 				if ( value == null ) continue;
-				terms.append( '&' );
-				terms.append( key );
-				terms.append('=' );
-				terms.append( value );		// URL encoding is done by the URI constructor
+				terms.append( '&' )
+				.append( key )
+				.append('=' )
+				.append( value );		// URL encoding is done by the URI constructor
 			}
 		}
 			
