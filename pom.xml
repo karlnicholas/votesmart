@@ -37,8 +37,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -131,7 +131,7 @@
 		</dependency>
 	</dependencies>
 	<properties>
-		<java_version>1.6</java_version>
+		<java_version>1.7</java_version>
 	</properties>
 	<name>VoteSmart Client</name>
 </project>
